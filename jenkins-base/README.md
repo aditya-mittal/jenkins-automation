@@ -53,5 +53,5 @@ $ docker run -d -p 8080:8080 \
     -e "JENKINS_URL=http://localhost:8080" \
     -v /tmp/jenkins_password:/run/secrets/JENKINS_PASSWORD \
     -v /tmp/jenkins_read_only_password:/run/secrets/JENKINS_READ_ONLY_PASSWORD \
-    --name jenkins jenkins-casc/jenkins-base:0.1
+    --name jenkins jenkins-casc/jenkins-base
 ```
