@@ -27,7 +27,7 @@ jobConfigs["jenkinsJobs"].each {
 
     def jobToBeCreated = pipelineJob(jobName) {
         triggers {
-            scm('* * * * *')
+            scm('H * * * *')
         }
 
         concurrentBuild(false)
