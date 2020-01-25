@@ -43,7 +43,7 @@ Any additional plugins can either be added to the derived image or added to the 
 ### How to run on local
 
 ```bash
-$ docker build . -t <docker-regitery-host:port>/jenkins-base
+$ docker build . -t jenkins-casc/jenkins-base
 
 $ echo -n "jenkins_password" > /tmp/jenkins_password
 
@@ -54,4 +54,19 @@ $ docker run -d -p 8080:8080 \
     -v /tmp/jenkins_password:/run/secrets/JENKINS_PASSWORD \
     -v /tmp/jenkins_read_only_password:/run/secrets/JENKINS_READ_ONLY_PASSWORD \
     --name jenkins jenkins-casc/jenkins-base
+```
+
+### Push image to ECR
+
+```bash
+# tag the docker image
+$ docker tag jenkins-casc/jenkins-base TBD_ECR_REPO_URL/jenkins:$(git rev-parse HEAD)
+$ docker tag jenkins-casc/jenkins-base TBD_ECR_REPO_URL/jenkins:latest
+
+# docker login to ECR 
+$ $(aws ecr get-login --no-include-email --region us-east-1)
+
+# docker push to ECR
+$ docker push TBD_ECR_REPO_URL/jenkins:${shaId}
+$ docker push TBD_ECR_REPO_URL/jenkins:latest
 ```

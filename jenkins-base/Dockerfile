@@ -2,6 +2,7 @@ FROM jenkins/jenkins:2.175-slim
 
 USER root
 
+# install docker inside jenkins container to build docker images
 RUN apt-get update && \
     apt-get install --no-install-recommends -y apt-transport-https \
         ca-certificates curl gnupg2 software-properties-common lsb-release locales && \
@@ -25,10 +26,8 @@ USER jenkins
 
 ENV JAVA_OPTS="-Djenkins.install.runSetupWizard=false"
 
+# enable CASC support for Jenkins CASC plugin
 COPY plugins.txt /usr/share/jenkins/ref/plugins.txt
-
 RUN /usr/local/bin/install-plugins.sh < /usr/share/jenkins/ref/plugins.txt
-
 COPY casc-configs /usr/share/jenkins/ref/casc-configs
-
 ENV CASC_JENKINS_CONFIG="/usr/share/jenkins/ref/casc-configs"

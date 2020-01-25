@@ -60,6 +60,7 @@ slack:2.23
 ssh-credentials:1.16
 structs:1.19
 timestamper:1.9
+terraform:1.0.9
 token-macro:2.7
 variant:1.2
 workflow-aggregator:2.6
